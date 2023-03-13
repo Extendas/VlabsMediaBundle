@@ -43,7 +43,7 @@ interface BaseFileInterface
     /**
      * Set File content type
      *
-     * @param string $name
+     * @param string $contentType
      */
     public function setContentType($contentType);
 
