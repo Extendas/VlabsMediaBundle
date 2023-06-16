@@ -11,6 +11,10 @@
 
 namespace Vlabs\MediaBundle\Extension;
 
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 use Vlabs\MediaBundle\Entity\BaseFileInterface;
 use Vlabs\MediaBundle\Handler\HandlerManager;
 use Vlabs\MediaBundle\Filter\FilterChain;
@@ -21,7 +25,7 @@ use Vlabs\MediaBundle\Filter\FilterInterface;
  *
  * @author Valentin Ferriere <valentin.ferriere@gmail.com>
  */
-class TwigExtension extends \Twig_Extension
+class TwigExtension extends AbstractExtension
 {
     /* @var \Twig_Environment */
     protected $environment;
@@ -36,24 +40,19 @@ class TwigExtension extends \Twig_Extension
         $this->templates = $templates;
     }
 
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
-
     public function getFunctions()
     {
-        return array(
-            'getBaseFile' => new \Twig_Function_Method($this, 'getBaseFile')
-        );
+        return [
+            new TwigFunction('getBaseFile', [$this, 'getBaseFile'])
+        ];
     }
 
     public function getFilters()
     {
-        return array(
-            'vlabs_filter' => new \Twig_Filter_Method($this, 'filter'),
-            'vlabs_media' => new \Twig_Filter_Method($this, 'displayTemplate')
-        );
+        return [
+            new TwigFilter('vlabs_filter', [$this, 'filter']),
+            new TwigFilter('vlabs_media', [$this, 'displayTemplate'], ['needs_environment' => true]),
+        ];
     }
 
     /**
@@ -91,20 +90,18 @@ class TwigExtension extends \Twig_Extension
      * @param array $options
      * @return mixed
      */
-    public function displayTemplate(BaseFileInterface $file, $templateAlias, array $options = array())
+    public function displayTemplate(Environment $environment, BaseFileInterface $file, $templateAlias, array $options = array())
     {
         /* @var $template \Twig_TemplateInterface */
         if ($templateAlias != null) {
             if (array_key_exists($templateAlias, $this->templates)) {
                 $templateAlias = $this->templates[$templateAlias];
             }
-
-            $template = $this->environment->loadTemplate($templateAlias);
         } else {
-            $template = $this->environment->loadTemplate($this->templates['default']);
+            $templateAlias = $this->templates['default'];
         }
 
-        return $template->display(array('media' => $file, 'options' => $options));
+        return $environment->render($templateAlias, array('media' => $file, 'options' => $options));
     }
 
     public function getBaseFile($prop, $datas)

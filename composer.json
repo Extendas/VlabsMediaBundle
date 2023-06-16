@@ -19,7 +19,8 @@
         "imagine/imagine": "<=0.5",
         "doctrine/orm": "*",
         "knplabs/knp-gaufrette-bundle": "^0.5.0",
-        "symfony/finder": ">=2.1"
+        "symfony/finder": ">=2.1",
+        "twig/twig": "^2.0"
     },
 
 
