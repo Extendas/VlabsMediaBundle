@@ -51,7 +51,7 @@ class TwigExtension extends AbstractExtension
     {
         return [
             new TwigFilter('vlabs_filter', [$this, 'filter']),
-            new TwigFilter('vlabs_media', [$this, 'displayTemplate'], ['needs_environment' => true]),
+            new TwigFilter('vlabs_media', [$this, 'displayTemplate'], ['needs_environment' => true, 'is_safe' => ['html']]),
         ];
     }
 
