@@ -67,27 +67,27 @@ class VlabsMediaExtension extends Extension
     public function addDefaultTemplates(&$config)
     {
         if (!array_key_exists('vlabs_file', $config['templates'])) {
-            $config['templates']['vlabs_file'] = 'VlabsMediaBundle:Form:vlabs_file.html.twig';
+            $config['templates']['vlabs_file'] = '@VlabsMedia\Form\vlabs_file.html.twig';
         }
 
         if (!array_key_exists('vlabs_del', $config['templates'])) {
-            $config['templates']['vlabs_del'] = 'VlabsMediaBundle:Form:vlabs_del_file.html.twig';
+            $config['templates']['vlabs_del'] = '@VlabsMedia\Form\vlabs_del_file.html.twig';
         }
         
         if (!array_key_exists('form_doc', $config['templates'])) {
-            $config['templates']['form_doc'] = 'VlabsMediaBundle:Form:form_doc.html.twig';
+            $config['templates']['form_doc'] = '@VlabsMedia\Form\form_doc.html.twig';
         }
         
         if (!array_key_exists('form_image', $config['templates'])) {
-            $config['templates']['form_image'] = 'VlabsMediaBundle:Form:form_image.html.twig';
+            $config['templates']['form_image'] = '@VlabsMedia\Form\form_image.html.twig';
         }
 
         if (!array_key_exists('default', $config['templates'])) {
-            $config['templates']['default'] = 'VlabsMediaBundle:Templates:default.html.twig';
+            $config['templates']['default'] = '@VlabsMedia\Templates\default.html.twig';
         }
 
         if (!array_key_exists('image', $config['templates'])) {
-            $config['templates']['image'] = 'VlabsMediaBundle:Templates:image.html.twig';
+            $config['templates']['image'] = '@VlabsMedia\Templates\image.html.twig';
         }
     }
 }
