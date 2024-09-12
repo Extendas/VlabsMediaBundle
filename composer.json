@@ -11,7 +11,6 @@
             "homepage": "http://www.v-labs.fr"
         }
     ],
-
     "require": {
         "php": ">=7.0",
         "symfony/form": ">=2.1 | >=2.3",
@@ -19,14 +18,12 @@
         "imagine/imagine": "<=0.5",
         "doctrine/orm": "*",
         "knplabs/knp-gaufrette-bundle": "^0.5.0",
+        "symfony/framework-bundle": ">=4.0",
         "symfony/finder": ">=2.1",
         "twig/twig": "^2.0"
     },
-
-
     "autoload": {
         "psr-0": { "Vlabs\\MediaBundle": "" }
     },
-
     "target-dir": "Vlabs/MediaBundle"
 }
