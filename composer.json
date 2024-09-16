@@ -17,7 +17,7 @@
         "symfony/validator": ">=2.1 | >=2.3",
         "imagine/imagine": "<=0.5",
         "doctrine/orm": "*",
-        "knplabs/knp-gaufrette-bundle": "^0.6.0",
+        "knplabs/knp-gaufrette-bundle": "^0.8.0",
         "symfony/framework-bundle": ">=4.0",
         "symfony/finder": ">=2.1",
         "twig/twig": "^2.0"
