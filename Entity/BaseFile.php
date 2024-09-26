@@ -27,34 +27,35 @@ abstract class BaseFile implements BaseFileInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
+
     /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string $size
      *
      * @ORM\Column(name="size", type="integer", nullable=true)
      */
-    private $size;
+    protected $size;
 
     /**
      * @var string $createdAt
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @var string $contentType
      *
      * @ORM\Column(name="content_type", type="string", length=50, nullable=true)
      */
-    private $contentType;
+    protected $contentType;
 
     public function __construct()
     {
