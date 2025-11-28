@@ -13,61 +13,32 @@ namespace Vlabs\MediaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * Vlabs\MediaBundle\Entity\BaseFile
- *
- * @ORM\MappedSuperclass
- */
+#[ORM\MappedSuperclass]
 abstract class BaseFile implements BaseFileInterface
 {
-    /**
-     * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
+    protected ?int $id = null;
 
-    /**
-     * @var string $name
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    protected $name;
+    #[ORM\Column(type: 'string')]
+    protected ?string $name = null;
 
-    /**
-     * @var string $size
-     *
-     * @ORM\Column(name="size", type="integer", nullable=true)
-     */
-    protected $size;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    protected ?int $size = null;
 
-    /**
-     * @var string $createdAt
-     *
-     * @ORM\Column(name="created_at", type="datetime")
-     */
-    protected $createdAt;
+    #[ORM\Column(type: 'datetime')]
+    protected \DateTime $created_at;
 
-    /**
-     * @var string $contentType
-     *
-     * @ORM\Column(name="content_type", type="string", length=50, nullable=true)
-     */
-    protected $contentType;
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    protected ?string $content_type;
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
+        $this->created_at = new \DateTime();
     }
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -113,54 +84,32 @@ abstract class BaseFile implements BaseFileInterface
      *
      * @return integer
      */
-    public function getSize()
+    public function getSize(): ?int
     {
         return $this->size;
     }
 
-    /**
-     * Set createdAt
-     *
-     * @param  \DateTime $createdAt
-     * @return BaseFile
-     */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $created_at): self
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $created_at;
 
         return $this;
     }
 
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
-    /**
-     * Set contentType
-     *
-     * @param  string   $contentType
-     * @return BaseFile
-     */
-    public function setContentType($contentType)
+    public function setContentType(string $content_type): self
     {
-        $this->contentType = $contentType;
+        $this->content_type = $content_type;
 
         return $this;
     }
 
-    /**
-     * Get contentType
-     *
-     * @return string
-     */
-    public function getContentType()
+    public function getContentType(): ?string
     {
-        return $this->contentType;
+        return $this->content_type;
     }
 }
