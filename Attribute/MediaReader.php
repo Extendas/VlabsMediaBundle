@@ -24,14 +24,7 @@ class MediaReader
     private $uploadDir;
     private $metadatas = [];
 
-    /**
-     * Read values from Vlabs\Media annotation
-     * Store all readed values into metadata property
-     *
-     * @param string              $class
-     * @param \ReflectionProperty $property
-     */
-    public function handle($class, $property)
+    public function handle(string $class, string $property)
     {
         $property = new \ReflectionProperty($class, $property);
         $media = $property->getAttributes($this->attributeClass);
