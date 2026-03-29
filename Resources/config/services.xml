@@ -10,12 +10,14 @@
         <parameter key="vlabs_media.handler_factory.class">Vlabs\MediaBundle\Handler\HandlerFactory</parameter>
         <parameter key="vlabs_media.handler.local_file_system.class">Vlabs\MediaBundle\Handler\LocalFileSystemHandler</parameter>
         <parameter key="vlabs_media.annotation.media_reader.class">Vlabs\MediaBundle\Annotation\MediaReader</parameter>
+        <parameter key="vlabs_media.attribute.media_reader.class">Vlabs\MediaBundle\Attribute\MediaReader</parameter>
         <parameter key="vlabs_media.handler.manager.class">Vlabs\MediaBundle\Handler\HandlerManager</parameter>
         <parameter key="vlabs_media.handler.abstract_handler.mail_manager.class">Vlabs\MediaBundle\Handler\AbstractHandler</parameter>
         <parameter key="vlabs_media_twig_extension.class">Vlabs\MediaBundle\Extension\TwigExtension</parameter>
         <parameter key="vlabs_media.type.del_file.class">Vlabs\MediaBundle\Form\Type\DelFileType</parameter>
         <parameter key="vlabs_media.handler.gaufrette.class">Vlabs\MediaBundle\Handler\GaufretteHandler</parameter>
         <parameter key="vlabs_media.annotation.cdn_reader.class">Vlabs\MediaBundle\Annotation\CdnReader</parameter>
+        <parameter key="vlabs_media.attribute.cdn_reader.class">Vlabs\MediaBundle\Attribute\CdnReader</parameter>
         <parameter key="vlabs_media.filter_chain.class">Vlabs\MediaBundle\Filter\FilterChain</parameter>
         <parameter key="vlabs_media.filter.abstract_filter.class">Vlabs\MediaBundle\Filter\AbstractFilter</parameter>
         <parameter key="vlabs_media.filter.crop.class">Vlabs\MediaBundle\Filter\ImageCropFilter</parameter>
@@ -29,6 +31,12 @@
         <!-- Annotations -->
         <service id="vlabs_media.annotation.media_reader" class="%vlabs_media.annotation.media_reader.class%" />
         <service id="vlabs_media.annotation.cdn_reader" class="%vlabs_media.annotation.cdn_reader.class%" >
+            <argument type="service" id="vlabs_media.adapter" />
+        </service>
+
+        <!-- Attributes -->
+        <service id="vlabs_media.attribute.media_reader" class="%vlabs_media.attribute.media_reader.class%" />
+        <service id="vlabs_media.attribute.cdn_reader" class="%vlabs_media.attribute.cdn_reader.class%" >
             <argument type="service" id="vlabs_media.adapter" />
         </service>
 
@@ -55,7 +63,7 @@
         </service>
         <service id="vlabs_media.handler.local_file_system" class="%vlabs_media.handler.local_file_system.class%" parent="vlabs_media.handler.abstract_handler" />
         <service id="vlabs_media.handler.gaufrette" class="%vlabs_media.handler.gaufrette.class%" parent="vlabs_media.handler.abstract_handler" >
-            <argument type="service" id="vlabs_media.annotation.cdn_reader" />
+            <argument type="service" id="vlabs_media.attribute.cdn_reader" />
         </service>
 
         <!-- Handler factory -->
@@ -65,7 +73,7 @@
 
         <!-- Handler manager -->
         <service id="vlabs_media.handler.manager" class="%vlabs_media.handler.manager.class%" public="false">
-            <argument type="service" id="vlabs_media.annotation.media_reader" />
+            <argument type="service" id="vlabs_media.attribute.media_reader" />
             <argument type="service" id="vlabs_media.handler_factory" />
             <argument type="service" id="vlabs_media.adapter" />
         </service>

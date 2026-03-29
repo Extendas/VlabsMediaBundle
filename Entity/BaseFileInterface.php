@@ -42,10 +42,8 @@ interface BaseFileInterface
 
     /**
      * Set File content type
-     *
-     * @param string $contentType
      */
-    public function setContentType($contentType);
+    public function setContentType(string $content_type);
 
     /**
      * Get File content type

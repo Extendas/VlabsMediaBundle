@@ -11,7 +11,7 @@
 
 namespace Vlabs\MediaBundle\Handler;
 
-use Vlabs\MediaBundle\Annotation\MediaReader;
+use Vlabs\MediaBundle\Attribute\MediaReader;
 use Vlabs\MediaBundle\Entity\BaseFileInterface;
 use Vlabs\MediaBundle\Adapter\AdapterInterface;
 

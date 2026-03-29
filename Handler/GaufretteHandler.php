@@ -13,7 +13,7 @@ namespace Vlabs\MediaBundle\Handler;
 
 use Gaufrette\Filesystem;
 use Vlabs\MediaBundle\Entity\BaseFileInterface;
-use Vlabs\MediaBundle\Annotation\CdnReader;
+use Vlabs\MediaBundle\Attribute\CdnReader;
 
 /**
  * @author Valentin Ferriere <valentin.ferriere@gmail.com>
