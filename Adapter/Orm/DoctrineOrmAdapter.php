@@ -25,7 +25,7 @@ class DoctrineOrmAdapter implements AdapterInterface
     */
     public function getObject(EventArgs $e)
     {
-        return $e->getEntity();
+        return $e->getObject();
     }
 
     /**
@@ -33,7 +33,7 @@ class DoctrineOrmAdapter implements AdapterInterface
     */
     public function getLoadedMetaDatas(EventArgs $e)
     {
-        return $e->getEntityManager()->getMetadataFactory()->getLoadedMetadata();
+        return $e->getObjectManager()->getMetadataFactory()->getLoadedMetadata();
     }
 
     /**

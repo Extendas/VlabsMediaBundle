@@ -138,16 +138,6 @@ class UploaderListenerTest extends \PHPUnit_Framework_TestCase
         $this->adapter = null;
     }
 
-    public function testGetSubscribedEvents()
-    {
-        $listener = new UploaderListener($this->handlerManager, $this->filterChain);
-        $events = $listener->getSubscribedEvents();
-
-        $this->assertTrue(in_array('prePersist', $events));
-        $this->assertTrue(in_array('preRemove', $events));
-        $this->assertTrue(in_array('postRemove', $events));
-    }
-
     public function testPrePersist()
     {
         $args = $this->getMockBuilder('Doctrine\Common\EventArgs')

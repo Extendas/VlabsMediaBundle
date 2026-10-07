@@ -92,6 +92,9 @@
         <service id="vlabs_media.listener.uploader" class="%vlabs_media.listener.uploader.class%" public="false">
             <argument type="service" id="vlabs_media.handler.manager" />
             <argument type="service" id="vlabs_media.filter_chain" />
+            <tag name="doctrine.event_listener" event="prePersist" />
+            <tag name="doctrine.event_listener" event="preRemove" />
+            <tag name="doctrine.event_listener" event="postRemove" />
         </service>
 
         <!-- twig -->
