@@ -12,7 +12,6 @@
 namespace Vlabs\MediaBundle\EventListener;
 
 use Doctrine\Common\EventArgs;
-use Doctrine\Common\EventSubscriber;
 use Vlabs\MediaBundle\Handler\HandlerManager;
 use Vlabs\MediaBundle\Entity\BaseFileInterface;
 use Vlabs\MediaBundle\Filter\FilterChain;
@@ -22,9 +21,13 @@ use Vlabs\MediaBundle\Handler\MediaHandlerInterface;
  * Handle file system operation
  * Move & remove medias
  *
+ * Subscribed to the prePersist/preRemove/postRemove Doctrine events via the
+ * "doctrine.event_listener" service tag in Resources/config/services.xml
+ * instead of implementing EventSubscriber (deprecated since symfony/doctrine-bridge 6.3).
+ *
  * @author Valentin Ferriere <valentin.ferriere@gmail.com>
  */
-class UploaderListener implements EventSubscriber
+class UploaderListener
 {
     private $handlerManager;
     private $filterChain;
@@ -34,20 +37,6 @@ class UploaderListener implements EventSubscriber
     {
         $this->handlerManager = $handlerManager;
         $this->filterChain = $filterChain;
-    }
-
-    /**
-     * The events the listener is subscribed to.
-     *
-     * @return array The array of events.
-     */
-    public function getSubscribedEvents()
-    {
-        return array(
-            'prePersist',
-            'preRemove',
-            'postRemove'
-        );
     }
 
     /**
